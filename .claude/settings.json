@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/abubakkarbakthathi/Downloads/timeflow-vercel remote -v)",
+      "Bash(git -C /Users/abubakkarbakthathi/Downloads/timeflow-vercel log --oneline)",
+      "Bash(git -C /Users/abubakkarbakthathi/Downloads/timeflow-vercel status)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(gh repo *)",
+      "Bash(npm install *)"
+    ]
+  }
+}

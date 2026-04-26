@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Sessions } from "../../utils/api";
 import { msToHMS, msToHM, fmtTime, sessionWorkMs, taskElapsedMs, isOnBreak, isCheckedIn, statusBadge, todayKey } from "../../utils/helpers";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 function StatCard({ label, value, color }) {
   return (
@@ -71,7 +72,7 @@ export default function AdminOverview() {
 
       {!loading && data.length === 0 && (
         <div style={{ background: "#fff", borderRadius: 20, padding: "48px 24px", textAlign: "center", color: "#cbd5e1", border: "2px dashed #e2e8f0" }}>
-          <div style={{ fontSize: 32, marginBottom: 8 }}>📅</div>
+          <CalendarMonthIcon sx={{ fontSize: 48, marginBottom: 1, color: "#cbd5e1" }} />
           <div style={{ fontWeight: 700 }}>No activity found for this date</div>
         </div>
       )}
