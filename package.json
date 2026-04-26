@@ -1,0 +1,16 @@
+{
+  "name": "timeflow",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "cd frontend && npm install && npm run build",
+    "vercel-build": "cd frontend && npm install && npm run build"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.43.4",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.13",
+    "pdfkit": "^0.15.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "rewrites": [
+    { "source": "/api/auth/login",          "destination": "/api/auth/login" },
+    { "source": "/api/auth/me",             "destination": "/api/auth/me" },
+    { "source": "/api/users/full",          "destination": "/api/users/full" },
+    { "source": "/api/users/:id",           "destination": "/api/users/[id]" },
+    { "source": "/api/users",               "destination": "/api/users/index" },
+    { "source": "/api/sessions/today",      "destination": "/api/sessions/today" },
+    { "source": "/api/sessions/checkin",    "destination": "/api/sessions/checkin" },
+    { "source": "/api/sessions/checkout",   "destination": "/api/sessions/checkout" },
+    { "source": "/api/sessions/break",      "destination": "/api/sessions/break" },
+    { "source": "/api/sessions/tasks",      "destination": "/api/sessions/tasks" },
+    { "source": "/api/sessions/admin",      "destination": "/api/sessions/admin" },
+    { "source": "/api/reports",             "destination": "/api/reports/index" },
+    { "source": "/(.*)",                    "destination": "/index.html" }
+  ]
+}
