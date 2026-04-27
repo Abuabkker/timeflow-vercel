@@ -5,7 +5,7 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import DownloadIcon from "@mui/icons-material/Download";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 
 function useIsMobile() {
   const [mobile, setMobile] = useState(window.innerWidth < 768);
@@ -90,7 +90,7 @@ export default function AdminReports() {
       {toast && (
         <div style={{ position: "fixed", top: 24, right: 24, background: toast.type === "error" ? "#dc2626" : "#1e1b4b", color: "#fff", borderRadius: 12, padding: "14px 20px", fontSize: 14, fontWeight: 600, zIndex: 9999, boxShadow: "0 8px 32px rgba(0,0,0,0.2)", display: "flex", alignItems: "center", gap: 8, maxWidth: 360 }}>
           {toast.type === "error"
-            ? <ErrorOutlineIcon style={{ fontSize: 18, flexShrink: 0 }} />
+            ? <ReportProblemIcon style={{ fontSize: 18, flexShrink: 0 }} />
             : <CheckCircleIcon  style={{ fontSize: 18, flexShrink: 0 }} />}
           {toast.msg}
         </div>

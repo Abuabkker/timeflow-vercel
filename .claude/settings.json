@@ -9,7 +9,8 @@
       "Bash(gh repo *)",
       "Bash(npm install *)",
       "Bash(git -C /Users/abubakkarbakthathi/Downloads/timeflow-vercel ls-files --others --ignored --exclude-standard --directory)",
-      "Bash(git rm *)"
+      "Bash(git rm *)",
+      "Bash(npm run *)"
     ]
   }
 }
