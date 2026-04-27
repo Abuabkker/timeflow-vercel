@@ -47,9 +47,9 @@ export default function AdminOverview() {
     return () => clearInterval(t);
   }, [date]);
 
-  const working    = data.filter(d => isCheckedIn(d) && !isOnBreak(d)).length;
-  const onBreakCnt = data.filter(d => isOnBreak(d)).length;
-  const outCnt     = data.filter(d => d.check_out).length;
+  const working    = data.filter(d => isCheckedIn(d.session) && !isOnBreak(d.session)).length;
+  const onBreakCnt = data.filter(d => isOnBreak(d.session)).length;
+  const outCnt     = data.filter(d => d.session?.check_out).length;
 
   return (
     <div style={{ padding: isMobile ? "16px 12px" : "28px" }}>
@@ -100,14 +100,14 @@ export default function AdminOverview() {
 
       {/* Employee cards */}
       <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-        {data.map(({ user, ...session }) => {
+        {data.map(({ user, session }) => {
           const badge     = statusBadge(session);
           const workMs    = sessionWorkMs(session);
-          const tasks     = session.tasks || [];
+          const tasks     = session?.tasks || [];
           const doneTasks = tasks.filter(t => t.status === "completed").length;
 
           return (
-            <div key={session.id} style={{ background: "#fff", borderRadius: 20, padding: isMobile ? "14px" : "22px", boxShadow: "0 4px 16px rgba(0,0,0,0.05)", border: "1px solid #e2e8f0" }}>
+            <div key={user.id} style={{ background: "#fff", borderRadius: 20, padding: isMobile ? "14px" : "22px", boxShadow: "0 4px 16px rgba(0,0,0,0.05)", border: "1px solid #e2e8f0" }}>
 
               {/* Employee row */}
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10 }}>
@@ -119,8 +119,8 @@ export default function AdminOverview() {
                     <div style={{ fontWeight: 800, fontSize: isMobile ? 14 : 16, color: "#1e1b4b", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{user?.name}</div>
                     <div style={{ display: "flex", gap: 6, alignItems: "center", marginTop: 4, flexWrap: "wrap" }}>
                       <span style={{ fontSize: 11, background: badge.bg, color: badge.color, borderRadius: 8, padding: "2px 9px", fontWeight: 700 }}>{badge.label}</span>
-                      {session.check_in  && <span style={{ fontSize: 11, color: "#94a3b8" }}>In: {fmtTime(session.check_in)}</span>}
-                      {session.check_out && <span style={{ fontSize: 11, color: "#94a3b8" }}>Out: {fmtTime(session.check_out)}</span>}
+                      {session?.check_in  && <span style={{ fontSize: 11, color: "#94a3b8" }}>In: {fmtTime(session.check_in)}</span>}
+                      {session?.check_out && <span style={{ fontSize: 11, color: "#94a3b8" }}>Out: {fmtTime(session.check_out)}</span>}
                     </div>
                   </div>
                 </div>
@@ -131,7 +131,7 @@ export default function AdminOverview() {
               </div>
 
               {/* Breaks */}
-              {(session.breaks || []).length > 0 && (
+              {(session?.breaks || []).length > 0 && (
                 <div style={{ marginTop: 12, padding: "10px 14px", background: "#fffbeb", borderRadius: 10 }}>
                   <div style={{ fontSize: 11, color: "#b45309", fontWeight: 700, marginBottom: 4 }}>BREAKS</div>
                   <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
@@ -170,7 +170,7 @@ export default function AdminOverview() {
                 </div>
               )}
 
-              {!session.check_in && (
+              {!session?.check_in && (
                 <div style={{ marginTop: 12, textAlign: "center", color: "#cbd5e1", fontSize: 13 }}>No activity on this date</div>
               )}
             </div>

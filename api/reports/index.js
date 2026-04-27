@@ -211,14 +211,21 @@ module.exports = async (req, res) => {
       const data = await buildReportData(m, y);
       await supabase.from("reports").upsert({ month: m, year: y, data, generated_at: new Date().toISOString() }, { onConflict: "month,year" });
 
+      let emailError = null;
       if (doEmail && process.env.ADMIN_EMAIL) {
         try {
           const buf = await generatePDF(data, process.env.COMPANY_NAME || "TimeFlow");
           await sendEmail(buf, m, y);
           await supabase.from("reports").update({ email_sent: true, email_sent_at: new Date().toISOString() }).eq("month", m).eq("year", y);
-        } catch (e) { console.error("Email failed:", e.message); }
+        } catch (e) {
+          console.error("Email failed:", e.message);
+          emailError = e.message;
+        }
       }
-      return res.json({ message: `Report for ${m}/${y} generated${doEmail ? " and emailed" : ""}` });
+      return res.json({
+        message: `Report for ${m}/${y} generated${doEmail && !emailError ? " and emailed" : ""}`,
+        emailError,
+      });
     }
 
     res.status(405).json({ message: "Method not allowed" });
